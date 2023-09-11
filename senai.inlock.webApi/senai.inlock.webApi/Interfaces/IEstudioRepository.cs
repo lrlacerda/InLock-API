@@ -17,7 +17,7 @@ namespace senai.inlock.webApi.Interfaces
         /// <summary>
         /// Atuslizar um objeto existente passandoseu id pelo corpo da requisição
         /// </summary>
-        /// <param name="genero">Objetocom atualizado</param>
+        /// <param name="estudio">Objetocom atualizado</param>
         void Atualizar(EstudioDomain estudio);
         /// <summary>
         /// Deletar um objeto

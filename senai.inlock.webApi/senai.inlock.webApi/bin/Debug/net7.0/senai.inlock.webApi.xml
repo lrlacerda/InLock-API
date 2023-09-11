@@ -35,7 +35,7 @@
             <summary>
             Atuslizar um objeto existente passandoseu id pelo corpo da requisição
             </summary>
-            <param name="genero">Objetocom atualizado</param>
+            <param name="estudio">Objetocom atualizado</param>
         </member>
         <member name="M:senai.inlock.webApi.Interfaces.IEstudioRepository.Deletar(System.Int32)">
             <summary>
@@ -62,11 +62,11 @@
             </summary>
             <returns>Lista com os objetos</returns>
         </member>
-        <member name="M:senai.inlock.webApi.Interfaces.IJogoRepository.Atualizar(senai.inlock.webApi.Domains.JogoDomain)">
+        <member name="M:senai.inlock.webApi.Interfaces.IJogoRepository.Atualizar(System.Int32,senai.inlock.webApi.Domains.JogoDomain)">
             <summary>
             Atuslizar um objeto existente passandoseu id pelo corpo da requisição
             </summary>
-            <param name="genero">Objetocom atualizado</param>
+            <param name="jogo">Objetocom atualizado</param>
         </member>
         <member name="M:senai.inlock.webApi.Interfaces.IJogoRepository.Deletar(System.Int32)">
             <summary>

@@ -29,7 +29,7 @@ builder.Services.AddAuthentication(Options =>
 
         ValidIssuer = "senai.inlock.webApi",
 
-        ValidAudience = "senai.inlock.webApi."
+        ValidAudience = "senai.inlock.webApi"
     };
 });
 

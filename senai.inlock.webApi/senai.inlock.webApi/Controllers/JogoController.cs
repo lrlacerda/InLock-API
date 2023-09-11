@@ -4,64 +4,45 @@ using Microsoft.AspNetCore.Mvc;
 using senai.inlock.webApi.Domains;
 using senai.inlock.webApi.Interfaces;
 using senai.inlock.webApi.Repositoris;
+using System.Data;
 
 namespace senai.inlock.webApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class EstudioController : ControllerBase
+    public class JogoController : ControllerBase
     {
-        private IEstudioRepository _estudioRepository { get; set; }
+        private IJogoRepository _jogoRepository { get; set; }
 
-        public EstudioController()
+        public JogoController()
         {
-            _estudioRepository = new EstudioRepository();
+            _jogoRepository = new JogoRepository();
         }
 
         [HttpGet]
-        [Authorize(Roles = "2, 1")]
-
+        //[Authorize(Roles = "2, 1")]
         public IActionResult Get()
         {
             try
             {
-                List<EstudioDomain> listaEstudio = _estudioRepository.Listar();
+                List<JogoDomain> listaJogo = _jogoRepository.Listar();
 
-                return Ok(listaEstudio);
+                return Ok(listaJogo);
             }
             catch (Exception erro)
             {
                 return BadRequest(erro.Message);
             }
-        }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            try
-            {
-                EstudioDomain estudio = _estudioRepository.BuscarPorId(id);
-
-                if (estudio == null)
-                {
-                    return NotFound();
-                }
-                return Ok(estudio);
-            }
-            catch (Exception erro)
-            {
-                return StatusCode(500, erro.Message);
-            }
         }
 
         [HttpPost]
-        [Authorize(Roles = "2, 1")]
-        public IActionResult Post(EstudioDomain nonoEstudio)
+        public IActionResult Post(JogoDomain nonoJogo)
         {
             try
             {
-                _estudioRepository.Cadastrar(nonoEstudio);
+                _jogoRepository.Cadastrar(nonoJogo);
 
                 return StatusCode(201);
             }
@@ -72,12 +53,11 @@ namespace senai.inlock.webApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "2")]
         public IActionResult Delete(int id)
         {
             try
             {
-                _estudioRepository.Deletar(id);
+                _jogoRepository.Deletar(id);
 
                 return NoContent();
             }
@@ -87,20 +67,23 @@ namespace senai.inlock.webApi.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Put(EstudioDomain estudio)
+        [HttpPut("{id}")] 
+        public IActionResult Put(int id, JogoDomain jogo) 
         {
             try
             {
-                EstudioDomain estudioExistente = _estudioRepository.BuscarPorId(estudio.IdEstudio);
+                JogoDomain jogoExistente = _jogoRepository.BuscarPorId(id);
 
-                if (estudioExistente == null)
+                if (jogoExistente == null)
                 {
                     return NotFound();
                 }
-                _estudioRepository.Atualizar(estudio);
 
-                return NoContent();
+                jogo.IdJogo = id;
+
+                _jogoRepository.Atualizar(id, jogo);
+
+                return NoContent(); 
             }
             catch (Exception erro)
             {
