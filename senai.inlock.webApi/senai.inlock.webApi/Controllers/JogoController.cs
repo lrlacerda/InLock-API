@@ -21,7 +21,7 @@ namespace senai.inlock.webApi.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "2, 1")]
+        [Authorize(Roles = "2, 1")]
         public IActionResult Get()
         {
             try
